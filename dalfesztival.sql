@@ -1,48 +1,91 @@
--- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
---
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2017. Aug 08. 08:05
--- Kiszolgáló verziója: 5.7.14
--- PHP verzió: 5.6.25
+CREATE DATABASE dalfesztival DEFAULT CHARACTER SET UTF8 COLLATE utf8_hungarian_ci;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+USE dalfesztival;
 
+CREATE TABLE verseny (
+  ev INT,
+  datum DATE DEFAULT NULL,
+  varos VARCHAR(10) DEFAULT NULL,
+  orszag VARCHAR(18) DEFAULT NULL,
+  induloszam INT DEFAULT NULL,
+  CONSTRAINT pk_verseny PRIMARY KEY (ev)
+);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+INSERT INTO verseny (ev, datum, varos, orszag, induloszam) VALUES
+(1991, '1991-05-04', 'Róma', 'Olaszország', 22),
+(2000, '2000-05-13', 'Stockholm', 'Svédország', 24),
+(1974, '1974-04-06', 'Brighton', 'Egyesült királyság', 17),
+(1972, '1972-03-25', 'Edinburgh', 'Egyesült királyság', 18),
+(1969, '1969-03-29', 'Madrid', 'Spanyolország', 16),
+(1960, '1960-03-29', 'London', 'Egyesült királyság', 13),
+(1985, '1985-05-04', 'Göteborg', 'Svédország', 19),
+(2004, '2004-05-15', 'Isztambul', 'Törökország', 36),
+(1977, '1977-05-07', 'London', 'Egyesült királyság', 18),
+(1973, '1973-04-07', 'Luxembourg', 'Luxemburg', 17),
+(2003, '2003-05-24', 'Riga', 'Lettország', 26),
+(1997, '1997-05-03', 'Dublin', 'Írország', 25),
+(1970, '1970-03-21', 'Amszterdam', 'Hollandia', 12),
+(1982, '1982-04-24', 'Harrogate', 'Egyesült királyság', 18),
+(1981, '1981-04-04', 'Dublin', 'Írország', 20),
+(1957, '1957-03-03', 'Frankfurt', 'Németország', 10),
+(2005, '2005-05-21', 'Kijev', 'Ukrajna', 39),
+(2010, '2010-05-29', 'Bærum', 'Norvégia', 39),
+(1971, '1971-04-03', 'Dublin', 'Írország', 18),
+(1983, '1983-04-23', 'München', 'Németország', 20),
+(1987, '1987-05-09', 'Brüsszel', 'Belgium', 22),
+(1988, '1988-04-30', 'Dublin', 'Írország', 21),
+(1959, '1959-03-11', 'Cannes', 'Franciaország', 11),
+(1976, '1976-04-03', 'Hága', 'Hollandia', 18),
+(1978, '1978-04-22', 'Párizs', 'Franciaország', 20),
+(1963, '1963-03-23', 'London', 'Egyesült királyság', 16),
+(1965, '1965-03-20', 'Nápoly', 'Olaszország', 18),
+(1990, '1990-05-05', 'Zágráb', 'Jugoszlávia', 22),
+(1958, '1958-03-12', 'Hilversum', 'Hollandia', 10),
+(1989, '1989-05-06', 'Lausanne', 'Svájc', 22),
+(2009, '2009-05-16', 'Moszkva', 'Oroszország', 42),
+(2013, '2013-05-18', 'Malmö', 'Svédország', 39),
+(1998, '1998-05-09', 'Birmingham', 'Egyesült királyság', 25),
+(1994, '1994-04-30', 'Dublin', 'Írország', 25),
+(1975, '1975-03-22', 'Stockholm', 'Svédország', 19),
+(1999, '1999-05-29', 'Jeruzsálem', 'Izrael', 23),
+(1962, '1962-03-18', 'Luxembourg', 'Luxemburg', 16),
+(2001, '2001-05-12', 'Koppenhága', 'Dánia', 23),
+(1979, '1979-03-31', 'Jeruzsálem', 'Izrael', 19),
+(1966, '1966-03-05', 'Luxembourg', 'Luxemburg', 18),
+(2008, '2008-05-24', 'Belgrád', 'Szerbia', 43),
+(1986, '1986-05-03', 'Bergen', 'Norvégia', 20),
+(1964, '1964-03-21', 'Koppenhága', 'Dánia', 16),
+(1995, '1995-05-13', 'Dublin', 'Írország', 23),
+(1996, '1996-05-18', 'Oslo', 'Norvégia', 23),
+(1980, '1980-04-19', 'Hága', 'Hollandia', 19),
+(2007, '2007-05-12', 'Helsinki', 'Finnország', 42),
+(2006, '2006-05-20', 'Athén', 'Görögország', 37),
+(1961, '1961-03-18', 'Cannes', 'Franciaország', 16),
+(2002, '2002-05-25', 'Tallinn', 'Észtország', 24),
+(2012, '2012-05-26', 'Baku', 'Azerbajdzsán', 42),
+(1993, '1993-05-15', 'Millstreet', 'Írország', 25),
+(2011, '2011-05-14', 'Düsseldorf', 'Németország', 43),
+(1992, '1992-05-09', 'Malmö', 'Svédország', 23),
+(1984, '1984-05-05', 'Luxembourg', 'Luxemburg', 19),
+(1968, '1968-04-06', 'London', 'Egyesült királyság', 17),
+(1967, '1967-04-08', 'Bécs', 'Ausztria', 17);
 
---
--- Adatbázis: `dalfesztival`
---
+CREATE TABLE dal (
+  id BIGINT AUTO_INCREMENT,
+  ev INT DEFAULT NULL,
+  sorrend INT DEFAULT NULL,
+  orszag VARCHAR(30) DEFAULT NULL,
+  nyelv VARCHAR(50) DEFAULT NULL,
+  eloado VARCHAR(100) DEFAULT NULL,
+  eredeti VARCHAR(100) DEFAULT NULL,
+  magyar VARCHAR(100) DEFAULT NULL,
+  helyezes INT DEFAULT NULL,
+  pontszam INT DEFAULT NULL,
+  CONSTRAINT pk_dal PRIMARY KEY (id),
+  CONSTRAINT fk_dal_verseny FOREIGN KEY (ev) REFERENCES verseny(ev)
+);
 
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `dal`
---
-
-CREATE TABLE `dal` (
-  `ev` int(4) DEFAULT NULL,
-  `sorrend` int(2) DEFAULT NULL,
-  `orszag` varchar(21) DEFAULT NULL,
-  `nyelv` varchar(44) DEFAULT NULL,
-  `eloado` varchar(75) DEFAULT NULL,
-  `eredeti` varchar(41) DEFAULT NULL,
-  `magyar` varchar(46) DEFAULT NULL,
-  `helyezes` int(2) DEFAULT NULL,
-  `pontszam` int(3) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- A tábla adatainak kiíratása `dal`
---
-
-INSERT INTO `dal` (`ev`, `sorrend`, `orszag`, `nyelv`, `eloado`, `eredeti`, `magyar`, `helyezes`, `pontszam`) VALUES
+INSERT INTO dal (ev, sorrend, orszag, nyelv, eloado, eredeti, magyar, helyezes, pontszam) VALUES
 (1985, 14, 'Egyesült Királyság', 'angol', 'Vikki', 'Love Is', 'A szerelem...', 4, 100),
 (1988, 8, 'Izrael', 'héber', 'Yardena Arazi', 'Ben Adam', 'Emberi lény', 7, 85),
 (1972, 13, 'Jugoszlávia', 'szerbhorvát', 'Tereza Kesovija', 'Muzika i ti', 'A zene és Te', 9, 87),
@@ -563,7 +606,8 @@ INSERT INTO `dal` (`ev`, `sorrend`, `orszag`, `nyelv`, `eloado`, `eredeti`, `mag
 (1966, 18, 'Egyesült Királyság', 'angol', 'Kenneth McKellar', 'A Man Without Love', 'Egy férfi szerelem nélkül', 9, 8),
 (1980, 19, 'Belgium', 'francia', 'Telex', 'Euro-Vision', 'Euro-Vízió', 17, 14),
 (1989, 14, 'Finnország', 'finn', 'Anneli Saaristo', 'La dolce vita', 'Az édes élet', 7, 76);
-INSERT INTO `dal` (`ev`, `sorrend`, `orszag`, `nyelv`, `eloado`, `eredeti`, `magyar`, `helyezes`, `pontszam`) VALUES
+
+INSERT INTO dal (ev, sorrend, orszag, nyelv, eloado, eredeti, magyar, helyezes, pontszam) VALUES
 (1969, 11, 'Svájc', 'német', 'Paola del Medico', 'Bonjour, Bonjour', 'Jó napot, jó napot', 5, 13),
 (1991, 22, 'Olaszország', 'nápolyi', 'Peppino di Capri', 'Comme è ddoce \'o mare', 'Milyen édes a tenger', 7, 89),
 (2009, 10, 'Oroszország', 'orosz, ukrán', 'Anastasiya Prikhodko', 'Mamo', 'Anya', 11, 91),
@@ -1085,7 +1129,8 @@ INSERT INTO `dal` (`ev`, `sorrend`, `orszag`, `nyelv`, `eloado`, `eredeti`, `mag
 (1957, 10, 'Svájc', 'francia', 'Lys Assia', 'L’enfant que j’étais', 'A gyermek, aki voltam', 8, 5),
 (1999, 14, 'Ciprus', 'görög', 'Marlen', 'Tha \'ne erotas', 'Ez szerelem lesz', 22, 2),
 (2012, 13, 'Azerbajdzsán', 'angol', 'Sabina Babayeva', 'When the Music Dies', 'Ha a zene meghal', 4, 150);
-INSERT INTO `dal` (`ev`, `sorrend`, `orszag`, `nyelv`, `eloado`, `eredeti`, `magyar`, `helyezes`, `pontszam`) VALUES
+
+INSERT INTO dal (ev, sorrend, orszag, nyelv, eloado, eredeti, magyar, helyezes, pontszam) VALUES
 (1964, 11, 'Portugália', 'portugál', 'António Calvário', 'Oração', 'Imádság', 13, 0),
 (1984, 8, 'Belgium', 'francia', 'Jacques Zegers', 'Avanti la vie', 'Folytasd az életedet', 5, 70),
 (1957, 2, 'Luxemburg', 'francia', 'Danièle Dupré', 'Amours mortes (tant de peine)', 'Halott szerelmek (Oly sok fájdalom)', 4, 8),
@@ -1197,22 +1242,15 @@ INSERT INTO `dal` (`ev`, `sorrend`, `orszag`, `nyelv`, `eloado`, `eredeti`, `mag
 (1980, 1, 'Ausztria', 'német', 'Blue Danube', 'Du bist Musik', 'Te vagy a zene', 8, 64),
 (1983, 9, 'Finnország', 'finn', 'Ami Aspelund', 'Fantasiaa', 'Fantázia', 11, 41);
 
--- --------------------------------------------------------
 
---
--- Tábla szerkezet ehhez a táblához `nyelv`
---
+CREATE TABLE nyelv (
+  id BIGINT auto_increment,
+  orszag VARCHAR(30) DEFAULT NULL,
+  nyelv VARCHAR(20) DEFAULT NULL,
+  CONSTRAINT pk_nyelv PRIMARY KEY (id)
+);
 
-CREATE TABLE `nyelv` (
-  `orszag` varchar(21) DEFAULT NULL,
-  `nyelv` varchar(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- A tábla adatainak kiíratása `nyelv`
---
-
-INSERT INTO `nyelv` (`orszag`, `nyelv`) VALUES
+INSERT INTO nyelv (orszag, nyelv) VALUES
 ('Luxemburg', 'luxemburgi'),
 ('Jugoszlávia', 'szerbhorvát'),
 ('Svájc', 'francia'),
@@ -1285,84 +1323,3 @@ INSERT INTO `nyelv` (`orszag`, `nyelv`) VALUES
 ('Szerbia', 'szerb'),
 ('Szerbia és Montenegró', 'szerb'),
 ('Bosznia-Hercegovina', 'bosnyák');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `verseny`
---
-
-CREATE TABLE `verseny` (
-  `ev` int(4) DEFAULT NULL,
-  `datum` varchar(10) DEFAULT NULL,
-  `varos` varchar(10) DEFAULT NULL,
-  `orszag` varchar(18) DEFAULT NULL,
-  `induloszam` int(2) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- A tábla adatainak kiíratása `verseny`
---
-
-INSERT INTO `verseny` (`ev`, `datum`, `varos`, `orszag`, `induloszam`) VALUES
-(1991, '1991.05.04', 'Róma', 'Olaszország', 22),
-(2000, '2000.05.13', 'Stockholm', 'Svédország', 24),
-(1974, '1974.04.06', 'Brighton', 'Egyesült királyság', 17),
-(1972, '1972.03.25', 'Edinburgh', 'Egyesült királyság', 18),
-(1969, '1969.03.29', 'Madrid', 'Spanyolország', 16),
-(1960, '1960.03.29', 'London', 'Egyesült királyság', 13),
-(1985, '1985.05.04', 'Göteborg', 'Svédország', 19),
-(2004, '2004.05.15', 'Isztambul', 'Törökország', 36),
-(1977, '1977.05.07', 'London', 'Egyesült királyság', 18),
-(1973, '1973.04.07', 'Luxembourg', 'Luxemburg', 17),
-(2003, '2003.05.24', 'Riga', 'Lettország', 26),
-(1997, '1997.05.03', 'Dublin', 'Írország', 25),
-(1970, '1970.03.21', 'Amszterdam', 'Hollandia', 12),
-(1982, '1982.04.24', 'Harrogate', 'Egyesült királyság', 18),
-(1981, '1981.04.04', 'Dublin', 'Írország', 20),
-(1957, '1957.03.03', 'Frankfurt', 'Németország', 10),
-(2005, '2005.05.21', 'Kijev', 'Ukrajna', 39),
-(2010, '2010.05.29', 'Bærum', 'Norvégia', 39),
-(1971, '1971.04.03', 'Dublin', 'Írország', 18),
-(1983, '1983.04.23', 'München', 'Németország', 20),
-(1987, '1987.05.09', 'Brüsszel', 'Belgium', 22),
-(1988, '1988.04.30', 'Dublin', 'Írország', 21),
-(1959, '1959.03.11', 'Cannes', 'Franciaország', 11),
-(1976, '1976.04.03', 'Hága', 'Hollandia', 18),
-(1978, '1978.04.22', 'Párizs', 'Franciaország', 20),
-(1963, '1963.03.23', 'London', 'Egyesült királyság', 16),
-(1965, '1965.03.20', 'Nápoly', 'Olaszország', 18),
-(1990, '1990.05.05', 'Zágráb', 'Jugoszlávia', 22),
-(1958, '1958.03.12', 'Hilversum', 'Hollandia', 10),
-(1989, '1989.05.06', 'Lausanne', 'Svájc', 22),
-(2009, '2009.05.16', 'Moszkva', 'Oroszország', 42),
-(2013, '2013.05.18', 'Malmö', 'Svédország', 39),
-(1998, '1998.05.09', 'Birmingham', 'Egyesült királyság', 25),
-(1994, '1994.04.30', 'Dublin', 'Írország', 25),
-(1975, '1975.03.22', 'Stockholm', 'Svédország', 19),
-(1999, '1999.05.29', 'Jeruzsálem', 'Izrael', 23),
-(1962, '1962.03.18', 'Luxembourg', 'Luxemburg', 16),
-(2001, '2001.05.12', 'Koppenhága', 'Dánia', 23),
-(1979, '1979.03.31', 'Jeruzsálem', 'Izrael', 19),
-(1966, '1966.03.05', 'Luxembourg', 'Luxemburg', 18),
-(2008, '2008.05.24', 'Belgrád', 'Szerbia', 43),
-(1986, '1986.05.03', 'Bergen', 'Norvégia', 20),
-(1964, '1964.03.21', 'Koppenhága', 'Dánia', 16),
-(1995, '1995.05.13', 'Dublin', 'Írország', 23),
-(1996, '1996.05.18', 'Oslo', 'Norvégia', 23),
-(1980, '1980.04.19', 'Hága', 'Hollandia', 19),
-(2007, '2007.05.12', 'Helsinki', 'Finnország', 42),
-(2006, '2006.05.20', 'Athén', 'Görögország', 37),
-(1961, '1961.03.18', 'Cannes', 'Franciaország', 16),
-(2002, '2002.05.25', 'Tallinn', 'Észtország', 24),
-(2012, '2012.05.26', 'Baku', 'Azerbajdzsán', 42),
-(1993, '1993.05.15', 'Millstreet', 'Írország', 25),
-(2011, '2011.05.14', 'Düsseldorf', 'Németország', 43),
-(1992, '1992.05.09', 'Malmö', 'Svédország', 23),
-(1984, '1984.05.05', 'Luxembourg', 'Luxemburg', 19),
-(1968, '1968.04.06', 'London', 'Egyesült királyság', 17),
-(1967, '1967.04.08', 'Bécs', 'Ausztria', 17);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
